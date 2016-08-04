@@ -10,7 +10,7 @@ $(document).on('ready', function(){
   });
 
   // FEED RELATED EVENTS
-  $(".feed").on('click', function(){
+  $(document).on('click', '.feed', function(){
     $(".modal .title").html($(this).html());
     $(".modal-container").toggleClass('show');
   });
@@ -50,7 +50,9 @@ $(document).on('ready', function(){
         var i = 0;
         $('.feeds .feed').each(function(){
           $(this).append(response[i]);
-          $(this).addClass("filtered");
+          if (respone[i] == '<div class="red circle"></div>') {
+            $(this).addClass("filtered");
+          }
           i++;
         });
       }
