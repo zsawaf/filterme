@@ -38,7 +38,7 @@ $(document).on('ready', function(){
     // eventually aggregate values in a json, then send one api call instead of several. 
     var feed_array = [];
     $('.feeds .feed').each(function(){
-      var to_filter = $(this).html();
+      var to_filter = $(this).find('p').html();
       feed_array.push(to_filter);
     });
     $.ajax({
@@ -77,7 +77,7 @@ $(document).on('ready', function(){
           return false;
         }
         else {
-          $('.feeds').append('<div class="feed">'+val.title+'</div>');
+          $('.feeds').append('<div class="feed"><p>'+val.title+'</p></div>');
         }
         counter++;
       });
