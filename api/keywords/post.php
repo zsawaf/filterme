@@ -1,5 +1,7 @@
 <?php
 	require '../db-connect.php';
+	require '../helper.php';
+
 	$feed_title = $_POST['feed_title'];
 	$feed_keyword = $_POST['feed_keyword'];
 
@@ -10,7 +12,9 @@
 	$feed_keyword = strtolower($feed_keyword);
 
 	$stripped_title = preg_replace("#[[:punct:]]#", "", $feed_title);
+	$stripped_title = removeCommonWords($stripped_title);
 	$title_arr = explode(" ", $stripped_title);
+	
 	
 	// check if keyword is already in database. Process
 	$keyword = $mysqli->query("SELECT * FROM keyword WHERE keyword='$feed_keyword'");
@@ -39,7 +43,7 @@
 		{
 			if ($word->num_rows == 0)
 			{
-				$mysqli->query("INSERT INTO word (word, keyword_id) VALUES('$str', '$keyword_id')");
+				$mysqli->query("INSERT INTO word (word, keyword_id, frequency) VALUES('$str', '$keyword_id', '1')");
 			}
 			else
 			{

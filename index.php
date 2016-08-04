@@ -8,7 +8,7 @@
       <!-- filter container -->
       <div class="filter-container">
         <label for="filter"><h4>Social Media Feed Filter</h4></label>
-        <input name="filter" type="text" id="filter" placeholder="Enter keywords you would like to filter, separated by a comma. EG: Politics, Religion, Sports"/>
+        <input name="filter" type="text" id="filter" placeholder="Enter one keyword you would like to filter"/>
         <div class="save-filter btn">Save Filter</div>
       </div> <!-- end filter container -->
       <!-- filter list -->
@@ -18,15 +18,10 @@
       </div> <!-- end filter list -->
       
       <div class="feeds">
-        <div class="feed">Will Donald Trump win the US presidential election?</div>
-        <div class="feed">Are the Toronto Raptors screwed this year?</div>
-        <div class="feed">Pets, human's bestfriend?</div>
-        <div class="feed">Bombings in Syria continue, ISIS in power.</div>
-        <div class="feed">Donald Trump, is he what the US need?</div>
-        <div class="feed">Hide yo kids, hide yo wives, the pope is here.</div>
-        <div class="feed">political concepts</div>
-        <div class="feed">religion & politics</div>
-        <div class="feed">POLITICS he said</div>
+        <div class="feed">Donald Duck is the best cartoon show</div>
+        <div class="feed">'I'm not resigning,' Nunavut MP Hunter Tootoo says after admitting to 'inappropriate relationship'</div>
+        <div class="feed">'What do you mean by shortly?' Word of which Russian athletes will compete coming down to the wire</div>
+        <div class="feed">Quebec waiter arrested after seafood puts allergic customer in coma</div>
       </div>
     </div>
     <div class="modal-container">

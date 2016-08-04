@@ -1,15 +1,10 @@
 $(document).on('ready', function(){
   // add to filter list
-  var filter_list = [];
+  var filter;
   $('.save-filter').on('click', function(){
-    var filter_val = $("#filter").val().split(",");
-    for (var i=0;  i<filter_val.length; i++) {
-      if ($.inArray(filter_val[i], filter_list) == -1 && filter_val[i] != "") {
-        filter_list.push(filter_val[i]);
-      }
-    }
-    $(".filtered-list .result p").html(filter_list.toString(''));
-    post_filter();
+    filter = $("#filter").val();
+    $(".filtered-list .result p").html(filter);
+    post_filter(filter);
   });
 
   // FEED RELATED EVENTS
@@ -37,22 +32,26 @@ $(document).on('ready', function(){
     });
   });
   
-  function run_filter() {
+  function post_filter(filter) {
+    // eventually aggregate values in a json, then send one api call instead of several. 
+    var feed_array = [];
     $('.feeds .feed').each(function(){
       var to_filter = $(this).html();
-      for (var i=0; i < filter_list.length; i++) {
-        var includes = contain_keyword(filter_list[i], to_filter);
-        if (includes) {
-          break;
-        }
-      }
-      if (includes) {
-        $(this).append('<div class="alert"></div>');
+      feed_array.push(to_filter);
+    });
+    $.ajax({
+      url: './api/filter/post.php',
+      data: {'filter': filter, 'feed_title': JSON.stringify(feed_array)},
+      method: 'POST',
+      success: function(response) {
+        response = response.split(",");
+        var i = 0;
+        $('.feeds .feed').each(function(){
+          $(this).append(response[i]);
+          $(this).addClass("filtered");
+          i++;
+        });
       }
     });
-  }
-  
-  function contain_keyword(str1, str2) {
-    return str2.toLowerCase().includes(str1.toLowerCase());
   }
 });
