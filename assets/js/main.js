@@ -53,6 +53,9 @@ $(document).on('ready', function(){
           if (response[i] == '<div class="red circle"></div>') {
             $(this).addClass("filtered");
           }
+          else {
+            $(this).removeClass("filtered");
+          }
           i++;
         });
       }
