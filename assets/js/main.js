@@ -50,7 +50,7 @@ $(document).on('ready', function(){
         var i = 0;
         $('.feeds .feed').each(function(){
           $(this).append(response[i]);
-          if (respone[i] == '<div class="red circle"></div>') {
+          if (response[i] == '<div class="red circle"></div>') {
             $(this).addClass("filtered");
           }
           i++;
