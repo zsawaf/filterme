@@ -1,5 +1,7 @@
 $(document).on('ready', function(){
   // add to filter list
+  populate_news();
+  var max_feed_count = 100;
   var filter;
   $('.save-filter').on('click', function(){
     filter = $("#filter").val();
@@ -52,6 +54,30 @@ $(document).on('ready', function(){
           i++;
         });
       }
+    });
+  }
+
+  function populate_news() {
+    var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
+    url += '?' + $.param({
+      'api-key': "0d5be399d2f7419f9424d3dcf31deca6"
+    });
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(result) {
+      var counter = 0;
+      $.each(result.results, function(i, val){
+        if (counter >= max_feed_count) {
+          return false;
+        }
+        else {
+          $('.feeds').append('<div class="feed">'+val.title+'</div>');
+        }
+        counter++;
+      });
+    }).fail(function(err) {
+      throw err;
     });
   }
 });

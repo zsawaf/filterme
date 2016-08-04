@@ -18,10 +18,7 @@
       </div> <!-- end filter list -->
       
       <div class="feeds">
-        <div class="feed">Donald Duck is the best cartoon show</div>
-        <div class="feed">'I'm not resigning,' Nunavut MP Hunter Tootoo says after admitting to 'inappropriate relationship'</div>
-        <div class="feed">'What do you mean by shortly?' Word of which Russian athletes will compete coming down to the wire</div>
-        <div class="feed">Quebec waiter arrested after seafood puts allergic customer in coma</div>
+        
       </div>
     </div>
     <div class="modal-container">

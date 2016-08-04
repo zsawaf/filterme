@@ -130,3 +130,7 @@ h4 {
   background-color: #f00;
   color: #fff;
 }
+
+.filtered {
+  opacity: 0.5;
+}
