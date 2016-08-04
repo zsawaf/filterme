@@ -45,35 +45,37 @@
 				continue;
 			}
 
-			// now get P(W)
-			$pw = $mysqli->query("SELECT * FROM word");
-			// calculate total word occurences
-			$word_aggregate = 0;
-			while($row = $pw->fetch_assoc()) {
-				$word_aggregate += $row['frequency'];
-			}
+			// // now get P(W)
+			// $pw = $mysqli->query("SELECT * FROM word");
+			// // calculate total word occurences
+			// $word_aggregate = 0;
+			// while($row = $pw->fetch_assoc()) {
+			// 	$word_aggregate += $row['frequency'];
+			// }
 
-			// calculate word occurences of filtered words
-			$pwf = $mysqli->query("SELECT * FROM keyword LEFT JOIN word ON keyword.id = word.keyword_id WHERE word.word = '$word'");
-			// calculate total word occurences
-			$pwf_aggregate = 0;
-			while($row = $pwf->fetch_assoc()) {
-				$pwf_aggregate += $row['frequency'];
-			}
+			// // calculate word occurences of filtered words
+			// $pwf = $mysqli->query("SELECT * FROM keyword LEFT JOIN word ON keyword.id = word.keyword_id WHERE word.word = '$word'");
+			// // calculate total word occurences
+			// $pwf_aggregate = 0;
+			// while($row = $pwf->fetch_assoc()) {
+			// 	$pwf_aggregate += $row['frequency'];
+			// }
 
-			$prob_w = $pwf_aggregate / $word_aggregate;
-			// break if not enough stats
-			if ($prob_w == 0 || $prob_w == NAN) {
-				continue;
-			}
+			// $prob_w = $pwf_aggregate / $word_aggregate;
+			// // break if not enough stats
+			// if ($prob_w == 0 || $prob_w == NAN) {
+			// 	continue;
+			// }
 
-			// now we get P(F)
-			$pf = $mysqli->query("SELECT * FROM keyword LEFT JOIN word ON keyword.id = word.keyword_id WHERE keyword.keyword='$keyword'");
-			$filtered_word_aggregate = 0;
-			while($row = $pf->fetch_assoc()) {
-				$filtered_word_aggregate += $row['frequency'];
-			}
-			$prob_pf = $filtered_word_aggregate / $word_aggregate;
+			// // now we get P(F)
+			// $pf = $mysqli->query("SELECT * FROM keyword LEFT JOIN word ON keyword.id = word.keyword_id WHERE keyword.keyword='$keyword'");
+			// $filtered_word_aggregate = 0;
+			// while($row = $pf->fetch_assoc()) {
+			// 	$filtered_word_aggregate += $row['frequency'];
+			// }
+			// $prob_pf = $filtered_word_aggregate / $word_aggregate;
+
+			/* MY BAYES IMPLEMENTATION WASN'T WORKING, SO I ENDED UP TAKING THE AGGREGATE OF FilteredWordOccurences/TotalOccurencesForThatWord */
 
 			// now we are ready to calculate the total probability for the word
 			$p = $prob_wf;
@@ -85,10 +87,10 @@
 		$final_probability = $product_probabilities / $word_count;
 		
 		if ($final_probability > 0.5) {
-			echo '<div class="red circle"></div>, ';
+			echo '<div class="red circle"></div>,';
 		}
 		else {
-			echo '<div class="blue circle"></div>, ';
+			echo '<div class="blue circle"></div>,';
 		}
 	}
 ?>
